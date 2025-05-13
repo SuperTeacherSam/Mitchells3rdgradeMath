@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3rd Grade Georgia Math Adventure</title>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.9/babel.min.js"></script>
+</head>
+<body class="bg-blue-100 font-sans">
+  <div id="root"></div>
+  <script type="text/babel">
+    const standards = [
+      {
+        code: "3.NR.1",
+        description: "Use place value reasoning to represent, read, write, and compare numerical values up to 10,000 and round whole numbers up to 1,000.",
+        prerequisites: ["2.NR.1.1: Count within 1,000", "2.NR.1.2: Understand place value for ones, tens, hundreds"],
+        video: "https://www.youtube.com/embed/0GLgIM2gXg4", // Khan Academy: Intro to Place Value
+        game: () => (
+          <div>
+            <p className="text-lg">Play this fun place value game!</p>
+            <a href="https://www.splashlearn.com/math/place-value-games-for-3rd-graders" target="_blank" className="text-blue-600 underline">SplashLearn Place Value Game</a>
+          </div>
+        ),
+        quiz: [
+          { question: "What is the place value of 7 in 4,732?", options: ["Ones", "Tens", "Hundreds", "Thousands"], answer: "Hundreds" },
+          { question: "Round 567 to the nearest hundred.", options: ["500", "600", "570", "560"], answer: "600" }
+        ],
+        worksheet: "place_value_worksheet.pdf",
+        differentiation: ["Visual aids: Use base-ten blocks", "Extension: Compare numbers >10,000", "Support: Practice with two-digit numbers"],
+        image: "https://cdn.pixabay.com/photo/2016/09/01/19/53/abacus-1632469_1280.jpg",
+        imageAlt: "Colorful cartoon abacus for place value"
+      },
+      {
+        code: "3.NR.2",
+        description: "Use part-whole strategies to solve real-life problems involving addition and subtraction within 1,000.",
+        prerequisites: ["2.NR.2.1: Add/subtract within 100", "2.NR.2.2: Use mental math for 10s and 100s"],
+        video: "https://www.youtube.com/embed/2A0o1I5jI84", // Khan Academy: Addition and Subtraction within 1,000
+        game: () => (
+          <div>
+            <p className="text-lg">Try this addition game!</p>
+            <a href="https://www.mathplayground.com/grade_3_games.html" target="_blank" className="text-blue-600 underline">Math Playground Addition Game</a>
+          </div>
+        ),
+        quiz: [
+          { question: "Solve: 456 + 237 = ?", options: ["683", "693", "673", "703"], answer: "693" },
+          { question: "Solve: 800 - 345 = ?", options: ["455", "465", "445", "475"], answer: "455" }
+        ],
+        worksheet: "addition_subtraction_worksheet.pdf",
+        differentiation: ["Use manipulatives for visual learners", "Extension: Multi-step problems", "Support: Smaller numbers"],
+        image: "https://cdn.pixabay.com/photo/2018/03/31/06/31/math-3276718_1280.png",
+        imageAlt: "Cartoon of kids adding numbers"
+      },
+      {
+        code: "3.NR.3",
+        description: "Use multiplication and division to solve real-life problems within 100.",
+        prerequisites: ["2.NR.2.3: Understand equal groups", "2.NR.2.4: Skip count by 2s, 5s, 10s"],
+        video: "https://www.generationgenius.com/videolessons/introduction-to-multiplication/", // Generation Genius: Multiplication
+        game: () => (
+          <div>
+            <p className="text-lg">Play a multiplication game!</p>
+            <a href="https://www.multiplication.com/games" target="_blank" className="text-blue-600 underline">Multiplication.com Game</a>
+          </div>
+        ),
+        quiz: [
+          { question: "Solve: 6 × 7 = ?", options: ["36", "42", "48", "35"], answer: "42" },
+          { question: "Solve: 24 ÷ 4 = ?", options: ["4", "5", "6", "7"], answer: "6" }
+        ],
+        worksheet: "multiplication_division_worksheet.pdf",
+        differentiation: ["Arrays for visual learners", "Extension: Word problems", "Support: Use repeated addition"],
+        image: "https://cdn.pixabay.com/photo/2017/10/24/07/02/multiplication-2884094_1280.jpg",
+        imageAlt: "Cartoon multiplication chart"
+      },
+      {
+        code: "3.NR.4",
+        description: "Represent and interpret fractions as numbers and equivalent fractions.",
+        prerequisites: ["2.GSR.7.1: Partition shapes into equal parts", "2.GSR.7.2: Understand halves and fourths"],
+        video: "https://www.youtube.com/embed/9j_H9wK4NoQ", // Khan Academy: Intro to Fractions
+        game: () => (
+          <div>
+            <p className="text-lg">Fraction matching game!</p>
+            <a href="https://www.splashlearn.com/math/fractions-games-for-3rd-graders" target="_blank" className="text-blue-600 underline">SplashLearn Fractions Game</a>
+          </div>
+        ),
+        quiz: [
+          { question: "What fraction represents 1 out of 4 equal parts?", options: ["1/2", "1/3", "1/4", "1/5"], answer: "1/4" },
+          { question: "Are 2/4 and 1/2 equivalent?", options: ["Yes", "No"], answer: "Yes" }
+        ],
+        worksheet: "fractions_worksheet.pdf",
+        differentiation: ["Use fraction bars", "Extension: Compare fractions", "Support: Visual models"],
+        image: "https://cdn.pixabay.com/photo/2018/07/25/18/52/pizza-3561917_1280.png",
+        imageAlt: "Cartoon pizza sliced into fractions"
+      },
+      {
+        code: "3.PAR.5",
+        description: "Generate and analyze patterns to identify pattern attributes.",
+        prerequisites: ["2.PAR.3.1: Identify repeating patterns", "2.NR.2.4: Skip count by 5s, 10s, 100s"],
+        video: "https://www.pbslearningmedia.org/resource/mgbh.math.oa.patterns/patterns-in-math/", // PBS LearningMedia: Patterns in Math
+        game: () => (
+          <div>
+            <p className="text-lg">Pattern puzzle game!</p>
+            <a href="https://www.mathplayground.com/pattern_blocks.html" target="_blank" className="text-blue-600 underline">Math Playground Pattern Game</a>
+          </div>
+        ),
+        quiz: [
+          { question: "What comes next: 2, 4, 6, 8, __?", options: ["9", "10", "11", "12"], answer: "10" },
+          { question: "Identify the pattern: 5, 10, 15, 20", options: ["Add 5", "Add 10", "Multiply by 2", "Subtract 5"], answer: "Add 5" }
+        ],
+        worksheet: "patterns_worksheet.pdf",
+        differentiation: ["Use shape patterns for visual learners", "Extension: Create complex patterns", "Support: Simple number patterns"],
+        image: "https://cdn.pixabay.com/photo/2017/01/31/20/30/pattern-2026961_1280.png",
+        imageAlt: "Colorful pattern blocks"
+      },
+      {
+        code: "3.MDR.6",
+        description: "Solve real-life problems involving measurements (length, liquid volume, mass, time).",
+        prerequisites: ["2.MDR.5.1: Measure length with standard units", "2.MDR.6.1: Tell time to the nearest 5 minutes"],
+        video: "https://www.generationgenius.com/videolessons/measuring-mass-and-volume/", // Generation Genius: Measuring Mass and Volume
+        game: () => (
+          <div>
+            <p className="text-lg">Measurement matching game!</p>
+            <a href="https://www.splashlearn.com/math/measurement-games-for-3rd-graders" target="_blank" className="text-blue-600 underline">SplashLearn Measurement Game</a>
+          </div>
+        ),
+        quiz: [
+          { question: "How many minutes are in 1 hour?", options: ["30", "60", "90", "120"], answer: "60" },
+          { question: "What is the length of a 30 cm ruler in millimeters?", options: ["3 mm", "30 mm", "300 mm", "3000 mm"], answer: "300 mm" }
+        ],
+        worksheet: "measurement_worksheet.pdf",
+        differentiation: ["Use physical rulers for hands-on learners", "Extension: Convert units", "Support: Focus on one unit type"],
+        image: "https://cdn.pixabay.com/photo/2017/08/07/14/02/ruler-2603926_1280.png",
+        imageAlt: "Cartoon ruler and clock"
+      },
+      {
+        code: "3.MDR.7",
+        description: "Represent and interpret data using scaled graphs, line plots, and picture graphs.",
+        prerequisites: ["2.MDR.6.2: Create simple graphs", "2.MDR.6.3: Interpret bar graphs"],
+        video: "https://www.youtube.com/embed/5z0-7r0Q8eA", // Khan Academy: Picture Graphs
+        game: () => (
+          <div>
+            <p className="text-lg">Data graphing game!</p>
+            <a href="https://www.mathplayground.com/data_games.html" target="_blank" className="text-blue-600 underline">Math Playground Data Game</a>
+          </div>
+        ),
+        quiz: [
+          { question: "In a bar graph, if 5 students like apples and each symbol = 2 students, how many symbols?", options: ["2", "3", "4", "5"], answer: "3" },
+          { question: "What does a line plot show?", options: ["Categories", "Measurements", "Time", "Fractions"], answer: "Measurements" }
+        ],
+        worksheet: "data_worksheet.pdf",
+        differentiation: ["Use interactive graphing tools", "Extension: Create own graphs", "Support: Pre-made graph templates"],
+        image: "https://cdn.pixabay.com/photo/2016/06/15/16/12/graph-1459597_1280.png",
+        imageAlt: "Colorful bar graph cartoon"
+      },
+      {
+        code: "3.GSR.8",
+        description: "Solve real-life problems involving perimeter and area of rectangles.",
+        prerequisites: ["2.GSR.7.3: Understand rectangles", "2.MDR.5.1: Measure lengths"],
+        video: "https://www.youtube.com/embed/SSN7KsW3hQo", // Khan Academy: Area and Perimeter
+        game: () => (
+          <div>
+            <p className="text-lg">Area and perimeter game!</p>
+            <a href="https://www.splashlearn.com/math/area-and-perimeter-games-for-3rd-graders" target="_blank" className="text-blue-600 underline">SplashLearn Area Game</a>
+          </div>
+        ),
+        quiz: [
+          { question: "What is the perimeter of a rectangle with length 5 cm and width 3 cm?", options: ["15 cm", "16 cm", "17 cm", "18 cm"], answer: "16 cm" },
+          { question: "What is the area of a rectangle with length 4 cm and width 2 cm?", options: ["6 cm²", "8 cm²", "10 cm²", "12 cm²"], answer: "8 cm²" }
+        ],
+        worksheet: "perimeter_area_worksheet.pdf",
+        differentiation: ["Use grid paper for visual learners", "Extension: Irregular shapes", "Support: Simple rectangles"],
+        image: "https://cdn.pixabay.com/photo/2018/03/31/06/31/math-3276718_1280.png",
+        imageAlt: "Cartoon rectangle with measurements"
+      }
+    ];
+
+    function Quiz({ questions }) {
+      const [answers, setAnswers] = React.useState({});
+      const [results, setResults] = React.useState({});
+
+      const handleAnswer = (questionIndex, answer) => {
+        setAnswers({ ...answers, [questionIndex]: answer });
+        setResults({
+          ...results,
+          [questionIndex]: answer === questions[questionIndex].answer ? "Correct!" : "Try again!"
+        });
+      };
+
+      return (
+        <div className="mt-4">
+          {questions.map((q, index) => (
+            <div key={index} className="mb-4">
+              <p className="font-semibold">{q.question}</p>
+              {q.options.map((option, i) => (
+                <button
+                  key={i}
+                  onClick={() => handleAnswer(index, option)}
+                  className="block bg-blue-200 p-2 m-1 rounded hover:bg-blue-300"
+                >
+                  {option}
+                </button>
+              ))}
+              {results[index] && <p className="text-sm text-green-600">{results[index]}</p>}
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    function StandardSection({ standard }) {
+      return (
+        <div className="bg-white p-6 m-4 rounded-lg shadow-lg flex flex-col md:flex-row">
+          <div className="md:w-1/3">
+            <img src={standard.image} alt={standard.imageAlt} className="w-full h-48 object-cover rounded-lg mb-4" />
+          </div>
+          <div className="md:w-2/3 md:pl-6">
+            <h2 className="text-2xl font-bold text-blue-600">{standard.code}</h2>
+            <p className="text-lg">{standard.description}</p>
+            <h3 className="text-xl font-semibold mt-4">Prerequisites</h3>
+            <ul className="list-disc pl-5">
+              {standard.prerequisites.map((prereq, index) => (
+                <li key={index}>{prereq}</li>
+              ))}
+            </ul>
+            <h3 className="text-xl font-semibold mt-4">Watch and Learn</h3>
+            <iframe
+              width="100%"
+              height="200"
+              src={standard.video}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="rounded-lg"
+            ></iframe>
+            <h3 className="text-xl font-semibold mt-4">Play a Game</h3>
+            <standard.game />
+            <h3 className="text-xl font-semibold mt-4">Take a Quiz</h3>
+            <Quiz questions={standard.quiz} />
+            <h3 className="text-xl font-semibold mt-4">Practice Worksheet</h3>
+            <a href={standard.worksheet} download className="text-blue-600 underline">
+              Download Worksheet
+            </a>
+            <h3 className="text-xl font-semibold mt-4">Differentiation Tips</h3>
+            <ul className="list-disc pl-5">
+              {standard.differentiation.map((tip, index) => (
+                <li key={index}>{tip}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      );
+    }
+
+    function App() {
+      return (
+        <div className="container mx-auto p-4">
+          <header className="bg-blue-500 text-white p-6 rounded-lg text-center">
+            <h1 className="text-4xl font-bold">3rd Grade Georgia Math Adventure</h1>
+            <p className="text-lg mt-2">Explore fun math lessons, games, and quizzes!</p>
+          </header>
+          <main>
+            {standards.map((standard, index) => (
+              <StandardSection key={index} standard={standard} />
+            ))}
+          </main>
+          <footer className="bg-blue-500 text-white p-4 mt-8 rounded-lg text-center">
+            <p>More Resources: <a href="https://www.gadoe.org" target="_blank" className="underline">Georgia Standards</a> | <a href="https://www.khanacademy.org" target="_blank" className="underline">Khan Academy</a></p>
+            <p>Contact: mathadventure@example.com</p>
+          </footer>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
